@@ -14,29 +14,20 @@ public class AImove : MonoBehaviour
     //Referencing the target
     public Transform target;
 
-    //Referencing the obstacles
-    public GameObject obstacle;
+    
 
-    //Referencing PointGraphObject
-    GameObject graphParent;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 5; i++) { 
-            generateObstacles(obstacle);
-        }
-
-        graphParent = GameObject.Find("AStar");
-
-        //Generating component
-        graphParent.GetComponent<AstarPath>().Scan();
-
         //Instance of seeker attached to gameobject
         seeker = GetComponent<Seeker>();
 
         //Generating first path
         path = seeker.StartPath(transform.position, target.position);
+
+        
 
         //Start the process of moving the AI block to the target
         StartCoroutine(MoveTowardsTarget(this.transform));
@@ -48,16 +39,7 @@ public class AImove : MonoBehaviour
         
     }
 
-    void generateObstacles(GameObject obstacle)
-    {
-        float randomX = Mathf.Floor(Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y));
-
-        float randomY = Mathf.Floor(Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x));
-
-        Vector3 randomLocation = new Vector3(randomX, randomY);
-
-        Instantiate(obstacle, randomLocation, Quaternion.identity);
-    }
+    
 
     IEnumerator MoveTowardsTarget(Transform theAI)
     {
@@ -90,9 +72,12 @@ public class AImove : MonoBehaviour
                     }
 
                 }
-                yield return null;
+                path = seeker.StartPath(theAI.position, target.position);
+                yield return seeker.IsDone();
+                pos = path.vectorPath;
+                
             }
-            
+            yield return null;
         }
     }
 
