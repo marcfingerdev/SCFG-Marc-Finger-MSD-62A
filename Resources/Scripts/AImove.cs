@@ -39,8 +39,6 @@ public class AImove : MonoBehaviour
         
     }
 
-    
-
     IEnumerator MoveTowardsTarget(Transform theAI)
     {
 

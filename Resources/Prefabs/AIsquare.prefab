@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2829676550054875019}
   - component: {fileID: 2829676550054875020}
   - component: {fileID: 2829676550054875023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AIsquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,8 +128,8 @@ MonoBehaviour:
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
+    exactStartPoint: 0
+    exactEndPoint: 0
     useRaycasting: 0
     mask:
       serializedVersion: 2

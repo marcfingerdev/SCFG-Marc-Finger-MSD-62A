@@ -17,21 +17,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        graphParent = GameObject.Find("AStar");
+        //we scan the graph to generate it in memory
+        graphParent.GetComponent<AstarPath>().Scan();
+
+        
+
         for (int i = 0; i < 5; i++)
-        {
+        { 
             generateObstacles(obstacle);
         }
 
         for (int i = 0; i < 10; i++)
         {
             generateAIblocks(AIblocks);
+            StartCoroutine(updateGraph());
         }
 
-        graphParent = GameObject.Find("AStar");
-        //we scan the graph to generate it in memory
-        graphParent.GetComponent<AstarPath>().Scan();
-
-        StartCoroutine(updateGraph());
+        
     }
 
     // Update is called once per frame
@@ -42,17 +45,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator updateGraph()
     {
-        while (true)
-        {
-
-            //   targetNode.transform.position = target.position;
             graphParent.GetComponent<AstarPath>().Scan();
-
-
-            yield return null;
-
-        }
-
+            yield break;
+            //yield return null;
     }
 
     void generateObstacles(GameObject obstacle)
