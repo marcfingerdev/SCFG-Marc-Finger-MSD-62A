@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,40 +15,62 @@ public class GameManager : MonoBehaviour
     //Referencing PointGraphObject
     GameObject graphParent;
 
+    private string SceneName;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        SceneName = currentScene.name;
+
+        WhichScene();
+
         graphParent = GameObject.Find("AStar");
         //we scan the graph to generate it in memory
         graphParent.GetComponent<AstarPath>().Scan();
 
-        
-
-        for (int i = 0; i < 5; i++)
-        { 
-            generateObstacles(obstacle);
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            generateAIblocks(AIblocks);
-            StartCoroutine(updateGraph());
-        }
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        graphParent.GetComponent<AstarPath>().Scan();
     }
+
+    void WhichScene()
+    {
+        if (SceneName == "KU1")
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                generateAIblocks(AIblocks);
+            }
+        }
+        else if (SceneName == "KU2")
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                generateObstacles(obstacle);
+            }
+        }
+        else if (SceneName == "KU4")
+        {
+            
+        }
+        else if (SceneName == "Description")
+        {
+            
+        }
+    }
+
 
     IEnumerator updateGraph()
     {
             graphParent.GetComponent<AstarPath>().Scan();
-            yield break;
-            //yield return null;
+            yield return null;
     }
 
     void generateObstacles(GameObject obstacle)

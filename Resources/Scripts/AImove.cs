@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class AImove : MonoBehaviour
 {
@@ -12,22 +13,27 @@ public class AImove : MonoBehaviour
     Path path;
 
     //Referencing the target
-    public Transform target;
+    private Transform target;
 
-    
+    private string SceneName;
 
-    
 
     // Start is called before the first frame update
     void Start()
     {
+        // Create a temporary reference to the current scene.
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        SceneName = currentScene.name;
+
+        WhichScene();
+
         //Instance of seeker attached to gameobject
         seeker = GetComponent<Seeker>();
 
         //Generating first path
         path = seeker.StartPath(transform.position, target.position);
-
-        
 
         //Start the process of moving the AI block to the target
         StartCoroutine(MoveTowardsTarget(this.transform));
@@ -39,6 +45,26 @@ public class AImove : MonoBehaviour
         
     }
 
+    void WhichScene()
+    {
+        if (SceneName == "KU1")
+        {
+            target = GameObject.Find("TargetKU1").transform;
+        }
+        else if (SceneName == "KU2")
+        {
+            target = GameObject.Find("TargetKU2").transform;
+        }
+        else if (SceneName == "KU4")
+        {
+            target = GameObject.Find("TargetKU4").transform;
+        }
+        else if (SceneName == "Description")
+        {
+            target = GameObject.Find("TargetDescription").transform;
+        }
+    }
+
     IEnumerator MoveTowardsTarget(Transform theAI)
     {
 
@@ -46,7 +72,7 @@ public class AImove : MonoBehaviour
         {
 
             List<Vector3> pos = path.vectorPath;
-            Debug.Log("Positions Count: " + pos.Count);
+            //Debug.Log("Positions Count: " + pos.Count);
 
             for (int counter = 0; counter < pos.Count; counter++)
             {
