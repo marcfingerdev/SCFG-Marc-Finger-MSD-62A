@@ -20,6 +20,7 @@ public class KU4PatrolBehaviourScript : MonoBehaviour
         
     }
 
+    //moving all obstacles
     void MoveObstacle()
     {
         foreach (Transform obstacle in Obstacles)
