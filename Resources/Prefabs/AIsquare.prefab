@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2829676550054875020}
   - component: {fileID: 2829676550054875023}
   - component: {fileID: 4138121981173307553}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: AIsquare
   m_TagString: Player
   m_Icon: {fileID: 0}

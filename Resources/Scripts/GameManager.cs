@@ -66,6 +66,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void updateGraphMethod()
+    {
+        graphParent.GetComponent<AstarPath>().Scan();
+    }
+
 
     IEnumerator updateGraph()
     {
@@ -73,7 +78,7 @@ public class GameManager : MonoBehaviour
             yield return null;
     }
 
-    void generateObstacles(GameObject obstacle)
+    public void generateObstacles(GameObject obstacle)
     {
         float randomX = Mathf.Floor(Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y));
 
@@ -84,7 +89,7 @@ public class GameManager : MonoBehaviour
         Instantiate(obstacle, randomLocation, Quaternion.identity);
     }
 
-    void generateAIblocks(GameObject AIblocks)
+    public void generateAIblocks(GameObject AIblocks)
     {
         float randomX = Mathf.Floor(Random.Range(Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y));
 

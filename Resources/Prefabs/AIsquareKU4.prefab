@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2829676550054875019}
   - component: {fileID: 2829676550054875020}
   - component: {fileID: 4138121981173307553}
-  m_Layer: 8
+  - component: {fileID: -1313053612007869399}
+  m_Layer: 0
   m_Name: AIsquareKU4
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -160,3 +161,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-1313053612007869399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829676550054875022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3318e075d09069048b1193416e4e7823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

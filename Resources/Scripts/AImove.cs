@@ -62,6 +62,7 @@ public class AImove : MonoBehaviour
         else if (SceneName == "Description")
         {
             target = GameObject.Find("TargetDescription").transform;
+
         }
     }
 
